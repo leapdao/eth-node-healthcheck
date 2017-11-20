@@ -1,0 +1,10 @@
+{
+  "name": "geth-healthcheck",
+  "version": "1.0.0",
+  "description": "Simple http server to monitor if geth is in sync with blockchain",
+  "main": "index.js",
+  "repository": "git@github.com:acebusters/geth-healthcheck.git",
+  "author": "Kosta Korenkov <kosta@whoot.me>",
+  "license": "MIT",
+  "dependencies": {}
+}
