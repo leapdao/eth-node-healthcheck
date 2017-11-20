@@ -2,7 +2,7 @@ const http = require('http');
 const https = require('https');
 const { exec } = require('child_process');
 
-const ETHERSCAN_URL = 'https://api.etherscan.io/api?module=proxy&action=eth_blockNumber&apikey=426NUYIIU5GI77VEF7QANU68GSUW99AJRK';
+const ETHERSCAN_URL = `https://api.etherscan.io/api?module=proxy&action=eth_blockNumber&apikey=${process.env.ETHERSCAN_API_KEY}`;
 
 const getLocalBlockNum = () => {
   return new Promise((resolve, reject) => {
