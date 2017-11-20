@@ -1,6 +1,6 @@
 # geth-healthcheck
 
-Little http node.js server to run along the geth node. Returns **503 Service Unavailable** if last block number on the local node is off by 2 or more blocks from the last block nubmer from Etherscan. Otherwise returns **200 OK**
+Little http node.js server to run along the geth node. Returns **503 Service Unavailable** if the last block number on the local node is off by 2 or more blocks from the last block nubmer from Etherscan. Otherwise returns **200 OK**
 
 ## Usage
 
