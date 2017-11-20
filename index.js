@@ -37,8 +37,8 @@ const onHealthcheckRequest = (req, res) => {
   Promise.all([getLocalBlockNum(), getNetworkBlockNum()])
     .then((values) => {
       const [ localBlockNum, networkBlockNum ] = values;
-      const reponseStatus = localBlockNum < networkBlockNum ? 500 : 200;
-      res.writeHead(reponseStatus, { 'Content-Type': 'text/plain' });
+      const responseStatus = networkBlockNum - localBlockNum > 1 ? 500 : 200;
+      res.writeHead(responseStatus, { 'Content-Type': 'text/plain' });
       res.end((localBlockNum - networkBlockNum).toString());
     }).catch(e => {
       console.error(e);
