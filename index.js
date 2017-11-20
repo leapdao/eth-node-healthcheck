@@ -47,4 +47,4 @@ const onHealthcheckRequest = (req, res) => {
     });
 };
 
-http.createServer(onHealthcheckRequest).listen(9615);
+http.createServer(onHealthcheckRequest).listen(process.env.PORT);
