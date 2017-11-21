@@ -10,13 +10,14 @@ sudo apt-get install -y nodejs
 ```
 
 2. Get the app:
-``
+```
 wget https://raw.githubusercontent.com/acebusters/geth-healthcheck/master/index.js
-``
+```
 
 3. Run the app:
-
-``ETHERSCAN_API_KEY=vfvdf PORT=50336 node index.js``
+```
+ETHERSCAN_API_KEY=vfvdf PORT=50336 node index.js
+```
 
 Make sure it is detached from the terminal. Make sure the port is open for incoming connections.
 
