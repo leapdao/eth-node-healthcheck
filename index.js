@@ -19,7 +19,7 @@ const getNetworkBlockNum = () => {
   return new Promise((resolve, reject) => {
     https.get(ETHERSCAN_URL, (res) => {
       if (res.statusCode !== 200) {
-        return reject(`Etherscan responded with ${statusCode}`);
+        return reject(`Etherscan responded with ${res.statusCode}`);
       }
       res.setEncoding('utf8');
       let rawData = '';
