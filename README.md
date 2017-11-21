@@ -16,7 +16,7 @@ wget https://raw.githubusercontent.com/acebusters/geth-healthcheck/master/index.
 
 3. Run the app:
 ```
-ETHERSCAN_API_KEY=vfvdf PORT=50336 node index.js
+ETHERSCAN_API_KEY=<etherscan_api_key> PORT=50336 node index.js
 ```
 
 Make sure it is detached from the terminal. Make sure the port is open for incoming connections.
