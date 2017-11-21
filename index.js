@@ -3,6 +3,7 @@ const https = require('https');
 const { exec } = require('child_process');
 
 const ETHERSCAN_URL = `https://api.etherscan.io/api?module=proxy&action=eth_blockNumber&apikey=${process.env.ETHERSCAN_API_KEY}`;
+const MAX_BLOCK_DIFFERENCE = 3;
 
 const getLocalBlockNum = () => {
   return new Promise((resolve, reject) => {
@@ -37,7 +38,7 @@ const onHealthcheckRequest = (req, res) => {
   Promise.all([getLocalBlockNum(), getNetworkBlockNum()])
     .then((values) => {
       const [ localBlockNum, networkBlockNum ] = values;
-      const responseStatus = networkBlockNum - localBlockNum > 1 ? 500 : 200;
+      const responseStatus = networkBlockNum - localBlockNum > MAX_BLOCK_DIFFERENCE ? 500 : 200;
       res.writeHead(responseStatus, { 'Content-Type': 'text/plain' });
       res.end((localBlockNum - networkBlockNum).toString());
     }).catch(e => {
