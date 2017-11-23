@@ -9,7 +9,7 @@ const getLocalBlockNum = () => {
   return new Promise((resolve, reject) => {
     exec('geth --exec eth.blockNumber attach', (error, stdout, stderr) => {
       if (error) {
-        return reject(error);
+        return reject(`${error}`);
       }
       resolve(parseInt(stdout.trim()));
     });
