@@ -9,11 +9,11 @@ const MAX_BLOCK_DIFFERENCE = 3;
 
 const getLocalBlockNum = () => {
   return new Promise((resolve, reject) => {
-    exec('geth --exec eth.blockNumber attach', (error, stdout, stderr) => {
+    exec('curl --data \'{"method":"eth_blockNumber","params":[],"id":1,"jsonrpc":"2.0"}\' -H "Content-Type: application/json" -X POST localhost:8545', (error, stdout, stderr) => {
       if (error) {
         return reject(`${error}`);
       }
-      resolve(parseInt(stdout.trim()));
+      resolve(parseInt(JSON.parse(stdout.trim()).result));
     });
   });
 };
