@@ -2,7 +2,9 @@ const http = require('http');
 const https = require('https');
 const { exec } = require('child_process');
 
-const ETHERSCAN_URL = `https://api.etherscan.io/api?module=proxy&action=eth_blockNumber&apikey=${process.env.ETHERSCAN_API_KEY}`;
+const etherscanPrefix = process.env.NETWORK == 'rinkeby' ? 'rinkeby' : 'api';
+
+const ETHERSCAN_URL = `https://${etherscanPrefix}.etherscan.io/api?module=proxy&action=eth_blockNumber&apikey=${process.env.ETHERSCAN_API_KEY}`;
 const MAX_BLOCK_DIFFERENCE = 3;
 
 const getLocalBlockNum = () => {
