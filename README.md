@@ -19,6 +19,11 @@ wget https://raw.githubusercontent.com/acebusters/geth-healthcheck/master/index.
 ETHERSCAN_API_KEY=<etherscan_api_key> PORT=50336 node index.js
 ```
 
+for rinkeby network:
+```
+ETHERSCAN_API_KEY=<etherscan_api_key> PORT=50336 NETWORK=rinkeby node index.js
+```
+
 Make sure it is detached from the terminal. Make sure the port is open for incoming connections.
 
 ## License
