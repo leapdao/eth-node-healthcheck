@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const http = require('http');
 const https = require('https');
 const { exec } = require('child_process');
