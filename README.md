@@ -1,30 +1,30 @@
-# geth-healthcheck
+# eth-node-healthcheck
 
-Little http node.js server to run along the ethereum node. Node needs to have JSONRPC enabled. Returns **503 Service Unavailable** if the last block number on the local node is off by 4 or more blocks from the last block nubmer from Etherscan. Otherwise returns **200 OK**
+Little http node.js server to run along the ethereum node. Node needs to have JSONRPC enabled. Returns **503 Service Unavailable** if the last block number on the local node is off by 3 or more blocks from the last block nubmer from Etherscan. Otherwise returns **200 OK**.
+
+Supported networks:
+- mainnet
+- rinkeby
 
 ## Installation
-1. Install node.js if needed:
+
 ```
-curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
-sudo apt-get install -y nodejs
+npm install -g eth-node-healthcheck
 ```
 
-2. Get the app:
+## Run
+
+for mainnet:
 ```
-wget https://raw.githubusercontent.com/acebusters/geth-healthcheck/master/index.js
+ETHERSCAN_API_KEY=<etherscan_api_key> PORT=50336 eth-node-healthcheck
 ```
 
-3. Run the app:
+for rinkeby:
 ```
-ETHERSCAN_API_KEY=<etherscan_api_key> PORT=50336 node index.js
-```
-
-for rinkeby network:
-```
-ETHERSCAN_API_KEY=<etherscan_api_key> PORT=50336 NETWORK=rinkeby node index.js
+ETHERSCAN_API_KEY=<etherscan_api_key> PORT=50336 NETWORK=rinkeby eth-node-healthcheck
 ```
 
-Make sure it is detached from the terminal. Make sure the port is open for incoming connections.
+Make sure the process is detached from the terminal. Make sure the port is open for incoming connections.
 
 ## License
 
