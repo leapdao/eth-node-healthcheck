@@ -25,7 +25,8 @@ const getNetworkBlockNum = () => {
   return new Promise((resolve, reject) => {
     https.get(ETHERSCAN_URL, (res) => {
       if (res.statusCode !== 200) {
-        return reject(`Etherscan responded with ${res.statusCode}`);
+        //return reject(`Etherscan responded with ${res.statusCode}`);
+        return resolve(-1);
       }
       res.setEncoding('utf8');
       let rawData = '';
@@ -46,7 +47,10 @@ const onHealthcheckRequest = (req, res) => {
   Promise.all([getLocalBlockNum(), getNetworkBlockNum()])
     .then((values) => {
       const [ localBlockNum, networkBlockNum ] = values;
-      const responseStatus = networkBlockNum - localBlockNum > MAX_BLOCK_DIFFERENCE ? 500 : 200;
+      let responseStatus = networkBlockNum - localBlockNum > MAX_BLOCK_DIFFERENCE ? 500 : 200;
+      if (networkBlockNum <= 0) { // don't let etherscan f**k us
+        responseStatus = 200;
+      }
       res.writeHead(responseStatus, { 'Content-Type': 'text/plain' });
       res.end((localBlockNum - networkBlockNum).toString());
     }).catch(e => {
