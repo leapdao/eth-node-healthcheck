@@ -1,12 +1,11 @@
 #!/usr/bin/env node
 
+const ethers = require('ethers');
 const http = require('http');
 const https = require('https');
 const { exec } = require('child_process');
 
-const etherscanPrefix = process.env.NETWORK == 'rinkeby' ? 'api-rinkeby' : 'goerli' ? 'api-goerli' : 'api';
-
-const ETHERSCAN_URL = `https://${etherscanPrefix}.etherscan.io/api?module=proxy&action=eth_blockNumber&apikey=${process.env.ETHERSCAN_API_KEY}`;
+const provider = ethers.getDefaultProvider(process.env.NETWORK);
 const MAX_BLOCK_DIFFERENCE = 3;
 
 const getLocalBlockNum = () => {
@@ -21,23 +20,8 @@ const getLocalBlockNum = () => {
   });
 };
 
-const getNetworkBlockNum = () => {
-  return new Promise((resolve, reject) => {
-    https.get(ETHERSCAN_URL, (res) => {
-      if (res.statusCode !== 200) {
-        //return reject(`Etherscan responded with ${res.statusCode}`);
-        return resolve(-1);
-      }
-      res.setEncoding('utf8');
-      let rawData = '';
-      res.on('data', (chunk) => { rawData += chunk; });
-      res.on('end', () => {
-        resolve(parseInt(JSON.parse(rawData).result, 16));
-      });
-    }).on('error', (e) => {
-      reject(e.message);
-    });
-  });
+const getNetworkBlockNum = async () => {
+  return await provider.getBlockNumber();
 };
 
 const onHealthcheckRequest = (req, res) => {
