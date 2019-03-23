@@ -1,12 +1,12 @@
 {
   "name": "eth-node-healthcheck",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple http server to monitor if Geth/Parity is in sync with the blockchain",
   "main": "index.js",
   "repository": "git@github.com:parsec-labs/eth-node-healthcheck.git",
   "author": "Kosta Korenkov <kosta@whoot.me>",
   "bin": {
-    "eth-node-healthcheck" : "./index.js"
+    "eth-node-healthcheck": "./index.js"
   },
   "license": "MIT",
   "dependencies": {}
