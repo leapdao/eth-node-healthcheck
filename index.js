@@ -4,7 +4,7 @@ const http = require('http');
 const https = require('https');
 const { exec } = require('child_process');
 
-const etherscanPrefix = process.env.NETWORK == 'rinkeby' ? 'rinkeby' : 'api';
+const etherscanPrefix = process.env.NETWORK == 'rinkeby' ? 'rinkeby' : 'goerli' ? 'goerli' : 'api';
 
 const ETHERSCAN_URL = `https://${etherscanPrefix}.etherscan.io/api?module=proxy&action=eth_blockNumber&apikey=${process.env.ETHERSCAN_API_KEY}`;
 const MAX_BLOCK_DIFFERENCE = 3;
