@@ -3,10 +3,11 @@
 const ethers = require('ethers');
 const http = require('http');
 
-const host = process.env.RPC_HOST || 'localhost';
+const url = process.env.RPC_URL || 'http://localhost:8545';
+const port = process.env.PORT || 80
 const provider = ethers.getDefaultProvider(process.env.NETWORK);
-const localProvider = new ethers.providers.JsonRpcProvider(`http://${host}:8545`);
-const MAX_BLOCK_DIFFERENCE = 3;
+const localProvider = new ethers.providers.JsonRpcProvider(url);
+const MAX_BLOCK_DIFFERENCE = 5;
 
 const onHealthcheckRequest = async (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -32,4 +33,7 @@ const onHealthcheckRequest = async (req, res) => {
   res.end((localBlockNum - networkBlockNum).toString());
 };
 
-http.createServer(onHealthcheckRequest).listen(process.env.PORT);
+http.createServer(onHealthcheckRequest)
+  .listen(port, () => {
+    console.log(`Start port ${port}`);
+  });
