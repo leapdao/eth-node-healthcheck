@@ -1,1 +1,16 @@
-[]
+[Unit]
+Description=eth-node-healthcheck
+After=network.target auditd.service
+Wants=network.target
+
+[Service]
+ExecStart=/usr/bin/eth-node-healthcheck
+Restart=always
+RestartSec=5s
+Environment="NETWORK=https://rpc.bitkubchain.io"
+Environment="MAX_BLOCK_DIFFERENCE=10"
+
+[Install]
+WantedBy=default.target 
+RequiredBy=swarm.service
+Alias=eth-node-healthcheck.service

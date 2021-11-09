@@ -7,7 +7,7 @@ const url = process.env.RPC_URL || 'http://localhost:8545';
 const port = process.env.PORT || 80
 const provider = ethers.getDefaultProvider(process.env.NETWORK);
 const localProvider = new ethers.providers.JsonRpcProvider(url);
-const MAX_BLOCK_DIFFERENCE = 5;
+const MAX_BLOCK_DIFFERENCE = process.env.MAX_BLOCK_DIFFERENCE || 50;
 
 const onHealthcheckRequest = async (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
