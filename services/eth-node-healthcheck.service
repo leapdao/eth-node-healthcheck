@@ -8,7 +8,7 @@ ExecStart=/usr/bin/eth-node-healthcheck-linux-x64
 Restart=always
 RestartSec=5s
 Environment="NETWORK=https://rpc.bitkubchain.io"
-Environment="MAX_BLOCK_DIFFERENCE=10"
+Environment="MAX_BLOCK_DIFFERENCE=3"
 
 [Install]
 WantedBy=default.target 
