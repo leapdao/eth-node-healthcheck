@@ -9,7 +9,7 @@ const network = process.env.NETWORK_URL || 'https://rpc.bitkubchain.io';
 
 const provider = new ethers.providers.JsonRpcProvider(network);
 const localProvider = new ethers.providers.JsonRpcProvider(url);
-const MAX_BLOCK_DIFFERENCE = process.env.MAX_BLOCK_DIFFERENCE || 50;
+const MAX_BLOCK_DIFFERENCE = process.env.MAX_BLOCK_DIFFERENCE || 3;
 
 const onHealthcheckRequest = async (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
