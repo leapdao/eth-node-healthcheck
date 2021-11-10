@@ -4,7 +4,7 @@ After=network.target auditd.service
 Wants=network.target
 
 [Service]
-ExecStart=/usr/bin/eth-node-healthcheck
+ExecStart=/usr/bin/eth-node-healthcheck-linux-x64
 Restart=always
 RestartSec=5s
 Environment="NETWORK=https://rpc.bitkubchain.io"
