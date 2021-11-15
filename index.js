@@ -30,6 +30,8 @@ const onHealthcheckRequest = async (req, res) => {
   let responseStatus = networkBlockNum - localBlockNum > MAX_BLOCK_DIFFERENCE ? 500 : 200;
   if (localBlockNum > 10000 && networkBlockNum <= 0) { // don't let etherscan f**k us
     responseStatus = 200;
+  } else if (networkBlockNum < localBlockNum) {
+    responseStatus = 200;
   }
   res.writeHead(responseStatus, { 'Content-Type': 'text/plain' });
   res.end((localBlockNum - networkBlockNum).toString());
