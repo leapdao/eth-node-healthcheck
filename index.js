@@ -19,12 +19,23 @@ const onHealthcheckRequest = async (req, res) => {
   let networkBlockNum;
 
   try {
-    localBlockNum = await localProvider.getBlockNumber();
     networkBlockNum = await provider.getBlockNumber();
+    console.log(`Fetch network '${network}', last block: ${networkBlockNum}.`)
+  } catch (error) {
+    console.log(`Fetch network '${network}', error: bypass healthcheck.`)
+    console.error(e);
+    networkBlockNum = 0;
+  }
+
+  try {
+    localBlockNum = await localProvider.getBlockNumber();
+    console.log(`Fetch local '${url}', last block: ${networkBlockNum}`)
   } catch (e) {
+    console.log(`Fetch local '${url}', error: local node is down.`)
     console.error(e);
     res.writeHead(500, { 'Content-Type': 'text/plain' });
     res.end(e);
+    return;
   }
 
   let responseStatus = networkBlockNum - localBlockNum > MAX_BLOCK_DIFFERENCE ? 500 : 200;
