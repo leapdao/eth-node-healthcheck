@@ -7,7 +7,7 @@ Wants=network.target
 ExecStart=/usr/bin/eth-node-healthcheck-linux-x64
 Restart=always
 RestartSec=5s
-Environment="NETWORK=https://rpc.bitkubchain.io"
+Environment="NETWORK_URL=https://rpc.bitkubchain.io"
 Environment="MAX_BLOCK_DIFFERENCE=3"
 
 [Install]
