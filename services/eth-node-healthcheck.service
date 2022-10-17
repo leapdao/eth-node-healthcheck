@@ -1,10 +1,10 @@
 [Unit]
-Description=eth-node-healthcheck
+Description=bkc-node-healthcheck
 After=network.target auditd.service
 Wants=network.target
 
 [Service]
-ExecStart=/usr/bin/eth-node-healthcheck-linux-x64
+ExecStart=/usr/bin/bkc-node-healthcheck-linux-x64
 Restart=always
 RestartSec=5s
 Environment="NETWORK_URL=https://rpc.bitkubchain.io"
