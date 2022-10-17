@@ -12,7 +12,8 @@
     "bkc-node-healthcheck": "./index.js"
   },
   "scripts": {
-    "build": "pkg --targets linux-x64 -o bkc-node-healthcheck-linux-x64  .",
+    "build-x86": "pkg --targets linux-x64 -o ./bin/bkc-node-healthcheck-linux-x64  .",
+    "build-arm64": "pkg --targets linux-arm64 -o ./bin/bkc-node-healthcheck-linux-arm64  .",
     "printenv": "printenv"
   },
   "license": "MIT",
