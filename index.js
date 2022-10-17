@@ -5,11 +5,24 @@ const http = require('http');
 
 const port = process.env.PORT || 80
 const url = process.env.RPC_URL || 'http://localhost:8545';
-const network = process.env.NETWORK_URL || 'https://rpc.bitkubchain.io';
+const networkString = process.env.NETWORK_URL || 'https://rpc.bitkubchain.io';
+const networks = networkString.split(',')
 
 const localProvider = new ethers.providers.JsonRpcProvider(url);
 const MAX_BLOCK_DIFFERENCE = process.env.MAX_BLOCK_DIFFERENCE || 3;
 
+let networkIndex = 0
+const getPublicNetworkBlockNum = async () => {
+  const provider = new ethers.providers.JsonRpcProvider(networks[networkIndex]);
+  const publicBlockNum = await provider.getBlockNumber();
+  if (networks.length <= networkIndex) {
+    networkIndex = 0
+  } else {
+    networkIndex++
+  }
+  return publicBlockNum
+}
+ 
 const onHealthcheckRequest = async (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -18,8 +31,7 @@ const onHealthcheckRequest = async (req, res) => {
   let networkBlockNum;
 
   try {
-    const provider = new ethers.providers.JsonRpcProvider(network);
-    networkBlockNum = await provider.getBlockNumber();
+    networkBlockNum = await getPublicNetworkBlockNum()
   } catch (error) {
     console.log(`Fetch network ${network}, error: Cannot connect network.`)
     console.error(e);

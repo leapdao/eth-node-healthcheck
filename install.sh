@@ -3,8 +3,8 @@
 
 sudo su -
 
-curl https://raw.githubusercontent.com/isman-usoh/eth-node-healthcheck/master/bkc-node-healthcheck-linux-x64 --output /usr/bin/bkc-node-healthcheck-linux-x64
-curl https://raw.githubusercontent.com/isman-usoh/eth-node-healthcheck/master/services/eth-node-healthcheck.service --output /etc/systemd/system/bkc-node-healthcheck.service
+curl https://raw.githubusercontent.com/isman-usoh/bkc-node-healthcheck/master/bkc-node-healthcheck-linux-x64 --output /usr/bin/bkc-node-healthcheck-linux-x64
+curl https://raw.githubusercontent.com/isman-usoh/bkc-node-healthcheck/master/services/eth-node-healthcheck.service --output /etc/systemd/system/bkc-node-healthcheck.service
 chmod +x /usr/bin/bkc-node-healthcheck-linux-x64
 
 systemctl daemon-reload

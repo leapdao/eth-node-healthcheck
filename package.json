@@ -1,18 +1,18 @@
 {
-  "name": "eth-node-healthcheck",
+  "name": "bkc-node-healthcheck",
   "version": "1.1.0",
   "description": "Simple http server to monitor if Geth/Parity is in sync with the blockchain",
   "main": "index.js",
-  "repository": "git@github.com:parsec-labs/eth-node-healthcheck.git",
+  "repository": "git@github.com:isman-usoh/bkc-node-healthcheck.git",
   "author": {
     "email": "isman.usoh@gmail.com",
     "name": "Isman Usoh"
   },
   "bin": {
-    "eth-node-healthcheck": "./index.js"
+    "bkc-node-healthcheck": "./index.js"
   },
   "scripts": {
-    "build": "pkg --targets linux-x64 -o eth-node-healthcheck-linux-x64  .",
+    "build": "pkg --targets linux-x64 -o bkc-node-healthcheck-linux-x64  .",
     "printenv": "printenv"
   },
   "license": "MIT",
